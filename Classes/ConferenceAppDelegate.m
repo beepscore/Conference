@@ -17,12 +17,44 @@
 
 
 #pragma mark -
+#pragma mark Application's Documents directory
+/**
+ Returns the path to the application's Documents directory.
+ */
+- (NSString *)applicationDocumentsDirectory {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask,
+                                                         YES);
+    NSString *basePath = nil;
+    if([paths count] > 0) {
+        basePath = [paths objectAtIndex:0];
+    }
+    return basePath;
+}
+
+
+#pragma mark -
+#pragma mark Memory management
+
+- (void)dealloc {
+	
+    [managedObjectContext release];
+    [managedObjectModel release];
+    [persistentStoreCoordinator release];
+    
+	[navigationController release];
+	[window release];
+	[super dealloc];
+}
+
+
+#pragma mark -
 #pragma mark Application lifecycle
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
     
     // Override point for customization after app launch    
-
+    
 	RootViewController *rootViewController = (RootViewController *)[navigationController topViewController];
 	rootViewController.managedObjectContext = self.managedObjectContext;
 	
@@ -119,31 +151,9 @@
 }
 
 
-#pragma mark -
-#pragma mark Application's Documents directory
-
-/**
- Returns the path to the application's Documents directory.
- */
-- (NSString *)applicationDocumentsDirectory {
-	return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-}
-
-
-#pragma mark -
-#pragma mark Memory management
-
-- (void)dealloc {
-	
-    [managedObjectContext release];
-    [managedObjectModel release];
-    [persistentStoreCoordinator release];
+- (IBAction)saveAction:sender {
     
-	[navigationController release];
-	[window release];
-	[super dealloc];
 }
-
 
 @end
 
