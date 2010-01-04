@@ -128,11 +128,18 @@
         return persistentStoreCoordinator;
     }
 	
-    NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"Conference.sqlite"]];
+    NSURL *storeUrl = [NSURL fileURLWithPath:[[self applicationDocumentsDirectory] 
+                                              stringByAppendingPathComponent: @"Conference.sqlite"]];
 	
 	NSError *error = nil;
-    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:&error]) {
+    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] 
+                                  initWithManagedObjectModel:[self managedObjectModel]];
+    // add persistent store
+    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType 
+                                                  configuration:nil 
+                                                            URL:storeUrl 
+                                                        options:nil 
+                                                          error:&error]) {
 		/*
 		 Replace this implementation with code to handle the error appropriately.
 		 
