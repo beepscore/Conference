@@ -38,12 +38,12 @@
 
 - (void)dealloc {
 	
-    [managedObjectContext release];
-    [managedObjectModel release];
-    [persistentStoreCoordinator release];
+    [managedObjectContext release], managedObjectContext = nil;
+    [managedObjectModel release], managedObjectModel = nil;
+    [persistentStoreCoordinator release], persistentStoreCoordinator = nil;
     
-	[navigationController release];
-	[window release];
+	[navigationController release], navigationController = nil;
+	[window release], window = nil;
 	[super dealloc];
 }
 
