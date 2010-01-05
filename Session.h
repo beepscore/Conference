@@ -10,8 +10,7 @@
 
 @class Track;
 
-@interface Session :  NSManagedObject  
-{
+@interface Session :  NSManagedObject {
 }
 
 @property (nonatomic, retain) NSString * sessionID;

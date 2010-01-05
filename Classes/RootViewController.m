@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "Track.h"
 
 
 @implementation RootViewController
@@ -115,20 +116,27 @@
     return [sectionInfo numberOfObjects];
 }
 
+// Ref Dudney sec 11.5 pg 220
+- (void)configureCell:(UITableViewCell *)cell withTrack:(Track *)track {
+    cell.textLabel.text = track.name;
+    cell.detailTextLabel.text = track.trackAbstract;
+}
+
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
+- (UITableViewCell *)tableView:(UITableView *)tableView 
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+        static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    if (nil == cell) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle 
+                                       reuseIdentifier:CellIdentifier] autorelease];
     }
     
-	// Configure the cell.
-	NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
-	cell.textLabel.text = [[managedObject valueForKey:@"timeStamp"] description];
+	Track *track = [fetchedResultsController objectAtIndexPath:indexPath];
+	[self configureCell:cell withTrack:track];
 	
     return cell;
 }
