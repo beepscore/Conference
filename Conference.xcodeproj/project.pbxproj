@@ -19,6 +19,8 @@
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		DE73647110F2A11200EE0307 /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = DE73646E10F2A11200EE0307 /* Track.m */; };
 		DE73647210F2A11200EE0307 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = DE73647010F2A11200EE0307 /* Session.m */; };
+		DE950983110E44B2006EF9BC /* TrackEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE950981110E44B2006EF9BC /* TrackEditingViewController.m */; };
+		DE950984110E44B2006EF9BC /* TrackEditingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE950982110E44B2006EF9BC /* TrackEditingViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,9 @@
 		DE73646E10F2A11200EE0307 /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
 		DE73646F10F2A11200EE0307 /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
 		DE73647010F2A11200EE0307 /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
+		DE950980110E44B2006EF9BC /* TrackEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackEditingViewController.h; sourceTree = "<group>"; };
+		DE950981110E44B2006EF9BC /* TrackEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackEditingViewController.m; sourceTree = "<group>"; };
+		DE950982110E44B2006EF9BC /* TrackEditingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TrackEditingViewController.xib; path = Classes/TrackEditingViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +70,8 @@
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* ConferenceAppDelegate.h */,
 				1D3623250D0F684500981E51 /* ConferenceAppDelegate.m */,
+				DE950980110E44B2006EF9BC /* TrackEditingViewController.h */,
+				DE950981110E44B2006EF9BC /* TrackEditingViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -104,6 +111,7 @@
 			children = (
 				28860B760F44E54D00985440 /* Conference.xcdatamodel */,
 				2899E55F0DE3E45000AC0155 /* RootViewController.xib */,
+				DE950982110E44B2006EF9BC /* TrackEditingViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Conference-Info.plist */,
 			);
@@ -183,6 +191,7 @@
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */,
+				DE950984110E44B2006EF9BC /* TrackEditingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +208,7 @@
 				28860B770F44E54D00985440 /* Conference.xcdatamodel in Sources */,
 				DE73647110F2A11200EE0307 /* Track.m in Sources */,
 				DE73647210F2A11200EE0307 /* Session.m in Sources */,
+				DE950983110E44B2006EF9BC /* TrackEditingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
