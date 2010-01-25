@@ -23,6 +23,8 @@
 		DE950984110E44B2006EF9BC /* TrackEditingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE950982110E44B2006EF9BC /* TrackEditingViewController.xib */; };
 		DEB11F68110E487700DD0702 /* SessionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB11F66110E487700DD0702 /* SessionsViewController.m */; };
 		DEB11F69110E487700DD0702 /* SessionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEB11F67110E487700DD0702 /* SessionsViewController.xib */; };
+		DEF56488110E4A54005ED5D7 /* SessionEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF56486110E4A54005ED5D7 /* SessionEditingViewController.m */; };
+		DEF56489110E4A54005ED5D7 /* SessionEditingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEF56487110E4A54005ED5D7 /* SessionEditingViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,9 @@
 		DEB11F65110E487700DD0702 /* SessionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionsViewController.h; sourceTree = "<group>"; };
 		DEB11F66110E487700DD0702 /* SessionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionsViewController.m; sourceTree = "<group>"; };
 		DEB11F67110E487700DD0702 /* SessionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SessionsViewController.xib; path = Classes/SessionsViewController.xib; sourceTree = "<group>"; };
+		DEF56485110E4A54005ED5D7 /* SessionEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionEditingViewController.h; sourceTree = "<group>"; };
+		DEF56486110E4A54005ED5D7 /* SessionEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionEditingViewController.m; sourceTree = "<group>"; };
+		DEF56487110E4A54005ED5D7 /* SessionEditingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SessionEditingViewController.xib; path = Classes/SessionEditingViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +84,8 @@
 				DE950981110E44B2006EF9BC /* TrackEditingViewController.m */,
 				DEB11F65110E487700DD0702 /* SessionsViewController.h */,
 				DEB11F66110E487700DD0702 /* SessionsViewController.m */,
+				DEF56485110E4A54005ED5D7 /* SessionEditingViewController.h */,
+				DEF56486110E4A54005ED5D7 /* SessionEditingViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -120,6 +127,7 @@
 				2899E55F0DE3E45000AC0155 /* RootViewController.xib */,
 				DE950982110E44B2006EF9BC /* TrackEditingViewController.xib */,
 				DEB11F67110E487700DD0702 /* SessionsViewController.xib */,
+				DEF56487110E4A54005ED5D7 /* SessionEditingViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Conference-Info.plist */,
 			);
@@ -201,6 +209,7 @@
 				2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */,
 				DE950984110E44B2006EF9BC /* TrackEditingViewController.xib in Resources */,
 				DEB11F69110E487700DD0702 /* SessionsViewController.xib in Resources */,
+				DEF56489110E4A54005ED5D7 /* SessionEditingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +228,7 @@
 				DE73647210F2A11200EE0307 /* Session.m in Sources */,
 				DE950983110E44B2006EF9BC /* TrackEditingViewController.m in Sources */,
 				DEB11F68110E487700DD0702 /* SessionsViewController.m in Sources */,
+				DEF56488110E4A54005ED5D7 /* SessionEditingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
