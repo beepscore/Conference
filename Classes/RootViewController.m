@@ -26,8 +26,6 @@
 
 #pragma mark -
 #pragma mark View lifecycle
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -77,7 +75,7 @@
 
 - (void)viewDidUnload {
 	// Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-	// For example: self.myOutlet = nil;
+	self.fetchedResultsController = nil;
 }
 
 /*
@@ -97,8 +95,8 @@
     self.firstInsert = (0 == [self.fetchedResultsController.sections count]);
     
 	// Create a new instance of the entity managed by the fetched results controller.
-	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
-	NSEntityDescription *entity = [[fetchedResultsController fetchRequest] entity];
+	NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+	NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
 	Track *track = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
                                                  inManagedObjectContext:context];
 	
@@ -123,12 +121,12 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[fetchedResultsController sections] count];
+    return [[self.fetchedResultsController sections] count];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+	id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
 }
 
