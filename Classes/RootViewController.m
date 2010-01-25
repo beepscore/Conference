@@ -279,38 +279,40 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
  */
 
 // Ref Dudney sec 11.7 pg 227
- - (void)controller:(NSFetchedResultsController *)controller 
-    didChangeObject:(id)anObject 
-        atIndexPath:(NSIndexPath *)indexPath 
-      forChangeType:(NSFetchedResultsChangeType)type 
-       newIndexPath:(NSIndexPath *)newIndexPath {
-     
-     if(NSFetchedResultsChangeUpdate == type) {
-         [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath]
-                   withTrack:anObject];
-     } else if(NSFetchedResultsChangeMove == type) {
-         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0]
-                       withRowAnimation:UITableViewRowAnimationFade];
-     } else if(NSFetchedResultsChangeInsert == type) {
-         if(!self.firstInsert) {
-             [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                                   withRowAnimation:UITableViewRowAnimationRight];
-         } else {
-             [self.tableView insertSections:[[NSIndexSet alloc] initWithIndex:0] 
-                           withRowAnimation:UITableViewRowAnimationRight];
-         }
-     } else if(NSFetchedResultsChangeDelete == type) {
-         NSInteger sectionCount = [[fetchedResultsController sections] count];
-         if(0 == sectionCount) {
-             NSIndexSet *indexes = [NSIndexSet indexSetWithIndex:indexPath.section];
-             [self.tableView deleteSections:indexes
-                           withRowAnimation:UITableViewRowAnimationFade];
-         } else {
-             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                   withRowAnimation:UITableViewRowAnimationFade];
-         }
-     }
- }
+//START:code.RVC.didChangeObject
+- (void)controller:(NSFetchedResultsController *)controller 
+   didChangeObject:(id)anObject 
+       atIndexPath:(NSIndexPath *)indexPath 
+     forChangeType:(NSFetchedResultsChangeType)type 
+      newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    if(NSFetchedResultsChangeUpdate == type) {
+        [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath]
+                  withTrack:anObject];
+    } else if(NSFetchedResultsChangeMove == type) {
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0]
+                      withRowAnimation:UITableViewRowAnimationFade];
+    } else if(NSFetchedResultsChangeInsert == type) {
+        if(!self.firstInsert) {
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                                  withRowAnimation:UITableViewRowAnimationRight];
+        } else {
+            [self.tableView insertSections:[[NSIndexSet alloc] initWithIndex:0] 
+                          withRowAnimation:UITableViewRowAnimationRight];
+        }
+    } else if(NSFetchedResultsChangeDelete == type) {
+        NSInteger sectionCount = [[fetchedResultsController sections] count];
+        if(0 == sectionCount) {
+            NSIndexSet *indexes = [NSIndexSet indexSetWithIndex:indexPath.section];
+            [self.tableView deleteSections:indexes
+                          withRowAnimation:UITableViewRowAnimationFade];
+        } else {
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                  withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }
+}
+//END:code.RVC.didChangeObject
 
  
  /*

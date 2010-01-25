@@ -49,10 +49,10 @@
 		DE73647010F2A11200EE0307 /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
 		DE950980110E44B2006EF9BC /* TrackEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackEditingViewController.h; sourceTree = "<group>"; };
 		DE950981110E44B2006EF9BC /* TrackEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackEditingViewController.m; sourceTree = "<group>"; };
-		DE950982110E44B2006EF9BC /* TrackEditingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TrackEditingViewController.xib; path = Classes/TrackEditingViewController.xib; sourceTree = "<group>"; };
+		DE950982110E44B2006EF9BC /* TrackEditingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackEditingViewController.xib; sourceTree = "<group>"; };
 		DEB11F65110E487700DD0702 /* SessionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionsViewController.h; sourceTree = "<group>"; };
 		DEB11F66110E487700DD0702 /* SessionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionsViewController.m; sourceTree = "<group>"; };
-		DEB11F67110E487700DD0702 /* SessionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SessionsViewController.xib; path = Classes/SessionsViewController.xib; sourceTree = "<group>"; };
+		DEB11F67110E487700DD0702 /* SessionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionsViewController.xib; sourceTree = "<group>"; };
 		DEF56485110E4A54005ED5D7 /* SessionEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionEditingViewController.h; sourceTree = "<group>"; };
 		DEF56486110E4A54005ED5D7 /* SessionEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionEditingViewController.m; sourceTree = "<group>"; };
 		DEF56487110E4A54005ED5D7 /* SessionEditingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SessionEditingViewController.xib; path = Classes/SessionEditingViewController.xib; sourceTree = "<group>"; };
