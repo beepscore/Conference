@@ -21,6 +21,8 @@
 		DE73647210F2A11200EE0307 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = DE73647010F2A11200EE0307 /* Session.m */; };
 		DE950983110E44B2006EF9BC /* TrackEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE950981110E44B2006EF9BC /* TrackEditingViewController.m */; };
 		DE950984110E44B2006EF9BC /* TrackEditingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE950982110E44B2006EF9BC /* TrackEditingViewController.xib */; };
+		DEB11F68110E487700DD0702 /* SessionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB11F66110E487700DD0702 /* SessionsViewController.m */; };
+		DEB11F69110E487700DD0702 /* SessionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEB11F67110E487700DD0702 /* SessionsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,9 @@
 		DE950980110E44B2006EF9BC /* TrackEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackEditingViewController.h; sourceTree = "<group>"; };
 		DE950981110E44B2006EF9BC /* TrackEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackEditingViewController.m; sourceTree = "<group>"; };
 		DE950982110E44B2006EF9BC /* TrackEditingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TrackEditingViewController.xib; path = Classes/TrackEditingViewController.xib; sourceTree = "<group>"; };
+		DEB11F65110E487700DD0702 /* SessionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionsViewController.h; sourceTree = "<group>"; };
+		DEB11F66110E487700DD0702 /* SessionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionsViewController.m; sourceTree = "<group>"; };
+		DEB11F67110E487700DD0702 /* SessionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SessionsViewController.xib; path = Classes/SessionsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +77,8 @@
 				1D3623250D0F684500981E51 /* ConferenceAppDelegate.m */,
 				DE950980110E44B2006EF9BC /* TrackEditingViewController.h */,
 				DE950981110E44B2006EF9BC /* TrackEditingViewController.m */,
+				DEB11F65110E487700DD0702 /* SessionsViewController.h */,
+				DEB11F66110E487700DD0702 /* SessionsViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -112,6 +119,7 @@
 				28860B760F44E54D00985440 /* Conference.xcdatamodel */,
 				2899E55F0DE3E45000AC0155 /* RootViewController.xib */,
 				DE950982110E44B2006EF9BC /* TrackEditingViewController.xib */,
+				DEB11F67110E487700DD0702 /* SessionsViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Conference-Info.plist */,
 			);
@@ -192,6 +200,7 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */,
 				DE950984110E44B2006EF9BC /* TrackEditingViewController.xib in Resources */,
+				DEB11F69110E487700DD0702 /* SessionsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +218,7 @@
 				DE73647110F2A11200EE0307 /* Track.m in Sources */,
 				DE73647210F2A11200EE0307 /* Session.m in Sources */,
 				DE950983110E44B2006EF9BC /* TrackEditingViewController.m in Sources */,
+				DEB11F68110E487700DD0702 /* SessionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
