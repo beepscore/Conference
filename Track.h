@@ -19,7 +19,7 @@
 
 @end
 
-
+// (CoreDataGeneratedAccessors) category adds methods to the object
 @interface Track (CoreDataGeneratedAccessors)
 - (void)addSessionsObject:(Session *)value;
 - (void)removeSessionsObject:(Session *)value;
