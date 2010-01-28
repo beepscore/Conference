@@ -5,6 +5,17 @@
 //  Created by Steve Baker on 1/3/10.
 //  Copyright Beepscore LLC 2010. All rights reserved.
 //
+//
+//  RootViewController.m
+//  Conference
+//
+//  Created by Bill Dudney on 5/11/09.
+//  Copyright Gala Factory Software LLC 2009. All rights reserved.
+//
+//
+//  Licensed with the Apache 2.0 License
+//  http://apache.org/licenses/LICENSE-2.0
+//
 
 #import "RootViewController.h"
 #import "TrackEditingViewController.h"
@@ -23,16 +34,14 @@
 @synthesize sessionsVC = _sessionsVC;
 @synthesize firstInsert = _firstInsert;
 
-
-#pragma mark -
-#pragma mark View lifecycle
+//START:code.RVC.viewDidLoad
 - (void)viewDidLoad {
     [super viewDidLoad];
     
 	// Set up the edit and add buttons.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] 
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
                                   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                   target:self
                                   action:@selector(insertTrack)];
@@ -40,126 +49,86 @@
     [addButton release];
 	
 	NSError *error = nil;
-	if (![[self fetchedResultsController] performFetch:&error]) {
-		/*
-		 Replace this implementation with code to handle the error appropriately.
-		 
-		 abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-		 */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+	if (![self.fetchedResultsController performFetch:&error]) {
+        // handle the error...
 	}
+    
     self.title = @"Tracks";
 }
+//END:code.RVC.viewDidLoad
 
-/*
- - (void)viewWillAppear:(BOOL)animated {
- [super viewWillAppear:animated];
- }
- */
-/*
- - (void)viewDidAppear:(BOOL)animated {
- [super viewDidAppear:animated];
- }
- */
-/*
- - (void)viewWillDisappear:(BOOL)animated {
- [super viewWillDisappear:animated];
- }
- */
-/*
- - (void)viewDidDisappear:(BOOL)animated {
- [super viewDidDisappear:animated];
- }
- */
-
-- (void)viewDidUnload {
-	// Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-	self.fetchedResultsController = nil;
-}
-
-/*
- // Override to allow orientations other than the default portrait orientation.
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
- // Return YES for supported orientations.
- return (interfaceOrientation == UIInterfaceOrientationPortrait);
- }
- */
-
-
-#pragma mark -
-#pragma mark Add a new object
-
+//START:code.RVC.insertTrack
 - (void)insertTrack {
+    self.firstInsert = [self.fetchedResultsController.sections count] == 0;
 	
-    self.firstInsert = (0 == [self.fetchedResultsController.sections count]);
+    NSManagedObjectContext *context = 
+    [self.fetchedResultsController managedObjectContext];
+    NSEntityDescription *entity = 
+    [self.fetchedResultsController.fetchRequest entity];
+    Track *track = 
+    [NSEntityDescription insertNewObjectForEntityForName:[entity name]
+                                  inManagedObjectContext:context];
     
-	// Create a new instance of the entity managed by the fetched results controller.
-	NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-	NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-	Track *track = [NSEntityDescription insertNewObjectForEntityForName:[entity name]
-                                                 inManagedObjectContext:context];
-	
-	[track setValue:@"Track" forKey:@"name"];
-	[track setValue:@"This is a great track" forKey:@"trackAbstract"];
-	
-	// Save the context.
+    [track setValue:@"Track" forKey:@"name"];
+    [track setValue:@"This is a great track" forKey:@"trackAbstract"];
+    
     NSError *error = nil;
     if (![context save:&error]) {
-		/*
-		 Replace this implementation with code to handle the error appropriately.
-		 
-		 abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-		 */
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-		abort();
+        // Handle the error...
     }
 }
+//END:code.RVC.insertTrack
+
+- (void)viewDidUnload {
+    self.fetchedResultsController = nil;
+}
 
 
-#pragma mark -
 #pragma mark Table view methods
 
+//START:code.RVC.numberOfSectionsInTableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[self.fetchedResultsController sections] count];
+    return [[fetchedResultsController sections] count];
 }
+//END:code.RVC.numberOfSectionsInTableView
 
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+//START:code.RVC.numberOfRowsInSection
+- (NSInteger)tableView:(UITableView *)tableView 
+ numberOfRowsInSection:(NSInteger)section {
+    return [[[fetchedResultsController sections] objectAtIndex:section]
+            numberOfObjects];
 }
+//END:code.RVC.numberOfRowsInSection
 
-// Ref Dudney sec 11.5 pg 220
+//START:code.RVC.cellForRowAtIndexPath
 - (void)configureCell:(UITableViewCell *)cell withTrack:(Track *)track {
-    cell.textLabel.text = track.name;
+	cell.textLabel.text = track.name;
     cell.detailTextLabel.text = track.trackAbstract;
 }
 
-
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView 
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (nil == cell) {
+    UITableViewCell *cell =
+    [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle 
                                        reuseIdentifier:CellIdentifier] autorelease];
     }
     
-	Track *track = [fetchedResultsController objectAtIndexPath:indexPath];
-	[self configureCell:cell withTrack:track];
+    Track *track = [fetchedResultsController objectAtIndexPath:indexPath];//<label id="code.RVC.cellForRowAtIndexPath.getTrack"/>
+    [self configureCell:cell withTrack:track];
 	
     return cell;
 }
+//END:code.RVC.cellForRowAtIndexPath
 
-// Ref Dudney sec 11.8
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here -- for example, create and push another view controller.
+//START:code.RVC.didSelectRowAtIndexPath
+- (void)tableView:(UITableView *)tableView 
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Track *track = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    if (YES == self.editing) {
+    if(YES == self.editing) {
         self.trackEditingVC.selectedTrack = track;
         [self.navigationController pushViewController:self.trackEditingVC animated:YES];
     } else {
@@ -168,115 +137,76 @@
         [self.navigationController pushViewController:self.sessionsVC animated:YES];
     }
 }
+//END:code.RVC.didSelectRowAtIndexPath
 
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+//START:code.RVC.commitEditingStyle
+- (void)tableView:(UITableView *)tableView 
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
 forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the managed object for the given index path
-		NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
+        NSManagedObjectContext *context = 
+        [fetchedResultsController managedObjectContext];
         Track *track = [fetchedResultsController objectAtIndexPath:indexPath];
-		[context deleteObject:track];
+        [context deleteObject:track];
 		
 		// Save the context.
-		NSError *error = nil;
-		if (![context save:&error]) {
-			/*
-			 Replace this implementation with code to handle the error appropriately.
-			 
-			 abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-			 */
-			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-			abort();
-		}
-	}   
+        NSError *error;
+        if (![context save:&error]) {
+            // Handle the error...
+        }
+    }   
 }
-
+//END:code.RVC.commitEditingStyle
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // The table view should not be re-orderable.
+    // because the fetch order is defined in the fetch results controller
+    // and moving the rows would not be possible persistently
     return NO;
 }
 
 
 #pragma mark -
-#pragma mark Fetched results controller
 
+//START:code.RVC.fetchedResultsController
 - (NSFetchedResultsController *)fetchedResultsController {
-    
     if (fetchedResultsController != nil) {
         return fetchedResultsController;
     }
     
-    /*
-	 Set up the fetched results controller.
-     */
-	// Create the fetch request for the entity.
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	// Edit the entity name as appropriate.
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Track" 
-                                              inManagedObjectContext:managedObjectContext];
+	NSEntityDescription *entity = 
+    [NSEntityDescription entityForName:@"Track"
+                inManagedObjectContext:managedObjectContext];
 	[fetchRequest setEntity:entity];
 	
-	// Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] 
+                                        initWithKey:@"name" ascending:YES];
+	[fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 	
-	// Edit the sort key as appropriate.
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-	NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-	
-	[fetchRequest setSortDescriptors:sortDescriptors];
-	
-	// Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] 
-                                                             initWithFetchRequest:fetchRequest
-                                                             managedObjectContext:managedObjectContext
-                                                             sectionNameKeyPath:nil 
-                                                             cacheName:@"Root"];
-    aFetchedResultsController.delegate = self;
+	NSFetchedResultsController *aFetchedResultsController = 
+    [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
+                                        managedObjectContext:managedObjectContext
+                                          sectionNameKeyPath:nil
+                                                   cacheName:@"Root"];
+    aFetchedResultsController.delegate = self; // <label id="code.RVC.FRC.delegate"/>
 	self.fetchedResultsController = aFetchedResultsController;
 	
 	[aFetchedResultsController release];
 	[fetchRequest release];
 	[sortDescriptor release];
-	[sortDescriptors release];
 	
 	return fetchedResultsController;
 }    
+//END:code.RVC.fetchedResultsController
 
+#pragma mark FRC delegate methods
 
-// NSFetchedResultsControllerDelegate method to notify the delegate that all section and object changes have been processed. 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-	// In the simplest, most efficient, case, reload the table view.
-	[self.tableView reloadData];
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
 }
 
-/*
- Instead of using controllerDidChangeContent: to respond to all changes, you can implement all the delegate methods to update the table view in response to individual changes.  This may have performance implications if a large number of changes are made simultaneously.
- 
- // Notifies the delegate that section and object changes are about to be processed and notifications will be sent. 
- - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
- [self.tableView beginUpdates];
- }
- 
- - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
- // Update the table view appropriately.
- }
- */
-
-// Ref Dudney sec 11.7 pg 227
 //START:code.RVC.didChangeObject
 - (void)controller:(NSFetchedResultsController *)controller 
    didChangeObject:(id)anObject 
@@ -312,29 +242,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 //END:code.RVC.didChangeObject
 
- 
- /*
- - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
- [self.tableView endUpdates];
- } 
- */
-
-
-#pragma mark -
-#pragma mark Memory management
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-	// Relinquish ownership of any cached data, images, etc that aren't in use.
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
 }
 
+#pragma mark -
 
 - (void)dealloc {
-	[fetchedResultsController release], fetchedResultsController = nil;
-	[managedObjectContext release], managedObjectContext = nil;
+	[fetchedResultsController release];
+	[managedObjectContext release];
+    self.trackEditingVC = nil;
+    self.sessionsVC = nil;
     [super dealloc];
 }
 
-
 @end
-
